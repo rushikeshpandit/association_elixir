@@ -9,7 +9,7 @@ import Config
 
 config :association_elixir,
   ecto_repos: [AssociationElixir.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configures the endpoint
 config :association_elixir, AssociationElixirWeb.Endpoint,
