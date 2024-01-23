@@ -15,7 +15,9 @@ defmodule AssociationElixirWeb.ConnCase do
   this option is not recommended for other databases.
   """
 
+  alias AssociationElixir.Sessions
   use ExUnit.CaseTemplate
+  import AssociationElixir.UserFixtures
 
   using do
     quote do
@@ -23,7 +25,7 @@ defmodule AssociationElixirWeb.ConnCase do
       @endpoint AssociationElixirWeb.Endpoint
 
       use AssociationElixirWeb, :verified_routes
-
+      alias AssociationElixirWeb.Router.Helpers, as: Routes
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
@@ -34,5 +36,21 @@ defmodule AssociationElixirWeb.ConnCase do
   setup tags do
     AssociationElixir.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  def include_normal_user_token(%{conn: conn}) do
+    user = user_fixture()
+    password = "Rushi@7588"
+    {:ok, _, token} = Sessions.create(user.email, password)
+    conn = Plug.Conn.put_req_header(conn, "authorization", "Bearer " <> token)
+    {:ok, conn: conn, user: user, password: password, token: token}
+  end
+
+  def include_admin_token(%{conn: conn}) do
+    user = admin_fixture()
+    password = "Rushi@7588"
+    {:ok, _, token} = Sessions.create(user.email, password)
+    conn = Plug.Conn.put_req_header(conn, "authorization", "Bearer " <> token)
+    {:ok, conn: conn, user: user, password: password, token: token}
   end
 end
