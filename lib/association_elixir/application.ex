@@ -10,14 +10,16 @@ defmodule AssociationElixir.Application do
     children = [
       AssociationElixirWeb.Telemetry,
       AssociationElixir.Repo,
-      {DNSCluster, query: Application.get_env(:association_elixir, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:association_elixir, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: AssociationElixir.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: AssociationElixir.Finch},
       # Start a worker by calling: AssociationElixir.Worker.start_link(arg)
       # {AssociationElixir.Worker, arg},
       # Start to serve requests, typically the last entry
-      AssociationElixirWeb.Endpoint
+      AssociationElixirWeb.Endpoint,
+      {Finch, name: Swoosh.Finch}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

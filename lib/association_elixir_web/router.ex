@@ -1,12 +1,37 @@
 defmodule AssociationElixirWeb.Router do
   use AssociationElixirWeb, :router
+  alias AssociationElixirWeb.Middleware.EnsureAuthenticated
+  alias AssociationElixirWeb.Middleware.IsAdmin
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", AssociationElixirWeb do
+  pipeline :is_admin do
+    plug IsAdmin
+  end
+
+  pipeline :authenticated do
+    plug EnsureAuthenticated
+  end
+
+  scope "/api", AssociationElixirWeb.Api, as: :api do
     pipe_through :api
+
+    scope "/admin", Admin, as: :admin do
+      pipe_through :is_admin
+    end
+
+    scope "/" do
+      pipe_through :authenticated
+      post "/session/me", SessionController, :me
+      get "/users/:id", UserController, :show
+    end
+
+    post "/users", UserController, :create
+    post "/session", SessionController, :create
+    post "/session/forgot_password", SessionController, :forgot_password
+    post "/session/reset_password", SessionController, :reset_password
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

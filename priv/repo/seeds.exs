@@ -1,11 +1,23 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     AssociationElixir.Repo.insert!(%AssociationElixir.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias AssociationElixir.Accounts
+
+%{
+  first_name: "Rushikesh",
+  last_name: "Pandit",
+  user_name: "user",
+  password: "rushikesh@pandit.com",
+  password_confirmation: "rushikesh@pandit.com",
+  email: "user@pandit.com",
+  role: "USER"
+}
+|> Accounts.create_user()
+
+%{
+  first_name: "Rushikesh",
+  last_name: "Pandit",
+  user_name: "admin",
+  password: "rushikesh@pandit.co",
+  password_confirmation: "rushikesh@pandit.co",
+  email: "admin@pandit.com",
+  role: "ADMIN"
+}
+|> Accounts.create_user()
