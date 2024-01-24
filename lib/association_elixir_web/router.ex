@@ -34,8 +34,11 @@ defmodule AssociationElixirWeb.Router do
       post "/companies", CompanyController, :create
       put "/companies/:id", CompanyController, :update
       delete "/companies/:id", CompanyController, :delete
-      # get "/companies", CompanyController, :index
-      # get "/companies/:id", CompanyController, :show
+
+      # Only super admin can create, update and delete department
+      post "/departments", DepartmentController, :create
+      put "/departments/:id", DepartmentController, :update
+      delete "/departments/:id", DepartmentController, :delete
     end
 
     scope "/" do
@@ -46,6 +49,10 @@ defmodule AssociationElixirWeb.Router do
       # Authenticated user can only see the companies
       get "/companies", CompaniesController, :index
       get "/companies/:id", CompaniesController, :show
+
+      # Authenticated user can only see the departments
+      get "/departments", DepartmentController, :index
+      get "/departments/:id", DepartmentController, :show
     end
 
     post "/users", UserController, :create
