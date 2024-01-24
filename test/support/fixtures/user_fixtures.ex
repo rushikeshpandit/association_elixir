@@ -32,4 +32,14 @@ defmodule AssociationElixir.UserFixtures do
 
     admin
   end
+
+  def super_admin_fixture(attrs \\ %{}) do
+    {:ok, admin} =
+      attrs
+      |> user_attrs()
+      |> Map.put(:role, "SUPER_ADMIN")
+      |> Accounts.create_user()
+
+    admin
+  end
 end

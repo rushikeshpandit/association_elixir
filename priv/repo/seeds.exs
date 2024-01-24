@@ -21,3 +21,14 @@ alias AssociationElixir.Accounts
   role: "ADMIN"
 }
 |> Accounts.create_user()
+
+%{
+  first_name: "Varenya",
+  last_name: "Pandit",
+  user_name: "superadmin",
+  password: "varenya@pandit.co",
+  password_confirmation: "varenya@pandit.co",
+  email: "superadmin@pandit.com",
+  role: "SUPER_ADMIN"
+}
+|> Accounts.create_user()

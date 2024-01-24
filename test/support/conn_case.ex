@@ -53,4 +53,12 @@ defmodule AssociationElixirWeb.ConnCase do
     conn = Plug.Conn.put_req_header(conn, "authorization", "Bearer " <> token)
     {:ok, conn: conn, user: user, password: password, token: token}
   end
+
+  def include_super_admin_token(%{conn: conn}) do
+    user = super_admin_fixture()
+    password = "Rushi@7588"
+    {:ok, _, token} = Sessions.create(user.email, password)
+    conn = Plug.Conn.put_req_header(conn, "authorization", "Bearer " <> token)
+    {:ok, conn: conn, user: user, password: password, token: token}
+  end
 end

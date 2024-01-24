@@ -2,6 +2,7 @@ defmodule AssociationElixirWeb.Router do
   use AssociationElixirWeb, :router
   alias AssociationElixirWeb.Middleware.EnsureAuthenticated
   alias AssociationElixirWeb.Middleware.IsAdmin
+  alias AssociationElixirWeb.Middleware.IsSuperAdmin
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -9,6 +10,10 @@ defmodule AssociationElixirWeb.Router do
 
   pipeline :is_admin do
     plug IsAdmin
+  end
+
+  pipeline :is_super_admin do
+    plug IsSuperAdmin
   end
 
   pipeline :authenticated do
@@ -20,6 +25,10 @@ defmodule AssociationElixirWeb.Router do
 
     scope "/admin", Admin, as: :admin do
       pipe_through :is_admin
+    end
+
+    scope "/super_admin", SuperAdmin, as: :super_admin do
+      pipe_through :is_super_admin
     end
 
     scope "/" do

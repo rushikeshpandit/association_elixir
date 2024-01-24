@@ -2,7 +2,7 @@ defmodule AssociationElixir.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @role_values ~w/USER ADMIN/a
+  @role_values ~w/USER ADMIN SUPER_ADMIN/a
   @fields ~w/role/a
   @required_fields ~w/first_name last_name user_name password password_confirmation email/a
   @primary_key {:id, :binary_id, autogenerate: true}
