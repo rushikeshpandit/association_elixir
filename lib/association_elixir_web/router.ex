@@ -29,12 +29,23 @@ defmodule AssociationElixirWeb.Router do
 
     scope "/super_admin", SuperAdmin, as: :super_admin do
       pipe_through :is_super_admin
+
+      # Only super admin can create, update and delete company
+      post "/companies", CompanyController, :create
+      put "/companies/:id", CompanyController, :update
+      delete "/companies/:id", CompanyController, :delete
+      # get "/companies", CompanyController, :index
+      # get "/companies/:id", CompanyController, :show
     end
 
     scope "/" do
       pipe_through :authenticated
       post "/session/me", SessionController, :me
       get "/users/:id", UserController, :show
+
+      # Authenticated user can only see the companies
+      get "/companies", CompaniesController, :index
+      get "/companies/:id", CompaniesController, :show
     end
 
     post "/users", UserController, :create
