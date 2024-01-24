@@ -1,4 +1,4 @@
-defmodule AssociationElixirWeb.Api.CompaniesJson do
+defmodule AssociationElixirWeb.Api.CompaniesJSON do
   alias AssociationElixir.Companies.Company
 
   @doc """
