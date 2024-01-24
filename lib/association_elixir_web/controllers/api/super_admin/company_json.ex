@@ -1,12 +1,12 @@
 defmodule AssociationElixirWeb.Api.SuperAdmin.CompanyJSON do
   alias AssociationElixir.Companies.Company
 
-#   @doc """
-#   Renders a list of companies.
-#   """
-#   def index(%{companies: companies}) do
-#     %{data: for(company <- companies, do: data(company))}
-#   end
+  #   @doc """
+  #   Renders a list of companies.
+  #   """
+  #   def index(%{companies: companies}) do
+  #     %{data: for(company <- companies, do: data(company))}
+  #   end
 
   @doc """
   Renders a single company.

@@ -14,9 +14,11 @@ defmodule AssociationElixir.Companies.Company do
     field :type, Ecto.Enum, values: @type_values, default: :SERVICE
     timestamps(type: :utc_datetime)
   end
-def changeset(attrs) do
+
+  def changeset(attrs) do
     changeset(%__MODULE__{}, attrs)
   end
+
   @doc false
   def changeset(company, attrs) do
     company
