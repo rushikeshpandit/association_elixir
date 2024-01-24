@@ -1,4 +1,5 @@
 defmodule AssociationElixir.Companies.Company do
+  alias AssociationElixir.Deparments.Department
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -12,6 +13,8 @@ defmodule AssociationElixir.Companies.Company do
     field :name, :string
     field :description, :string
     field :type, Ecto.Enum, values: @type_values, default: :SERVICE
+
+    has_many :departments, Department
     timestamps(type: :utc_datetime)
   end
 
