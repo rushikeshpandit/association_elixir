@@ -20,10 +20,10 @@ defmodule AssociationElixirWeb.Api.SuperAdmin.CompanyController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    company = Companies.get_company!(id)
-    render(conn, :show, company: company)
-  end
+  # def show(conn, %{"id" => id}) do
+  #   company = Companies.get_company!(id)
+  #   render(conn, :show, company: company)
+  # end
 
   def update(conn, %{"id" => id, "company" => company_params}) do
     company = Companies.get_company!(id)
