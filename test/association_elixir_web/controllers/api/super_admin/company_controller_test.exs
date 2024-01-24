@@ -1,4 +1,4 @@
-defmodule AssociationElixirWeb.Api.SuperAdmin.CompaniesControllerTest do
+defmodule AssociationElixirWeb.Api.SuperAdmin.CompanyControllerTest do
   use AssociationElixirWeb.ConnCase
   import AssociationElixir.CompaniesFixtures
 

@@ -1,4 +1,4 @@
-defmodule AssociationElixirWeb.Api.CompanyControllerTest do
+defmodule AssociationElixirWeb.Api.CompaniesControllerTest do
   use AssociationElixirWeb.ConnCase
 
   describe "list company" do
