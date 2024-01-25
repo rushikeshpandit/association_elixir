@@ -20,18 +20,18 @@ defmodule AssociationElixir.DeparmentsTest do
 
     test "create_department/1 with valid data creates a department" do
       company = product_company_fixture()
-      valid_attrs = %{name: "some name", budget: 42, company_id: company.id}
+      valid_attrs = %{name: "some name", budget: 110_000, company_id: company.id}
 
       assert {:ok, %Department{} = department} = Deparments.create_department(valid_attrs)
       assert department.name == "some name"
-      assert department.budget == 42
+      assert department.budget == 110_000
     end
 
     test "create_department/1 with invalid data returns error changeset" do
       company = product_company_fixture()
 
       department = %{
-        budget: 10_000,
+        budget: 1_000,
         name: "Human Resource",
         companu_id: company.id
       }
@@ -42,13 +42,13 @@ defmodule AssociationElixir.DeparmentsTest do
     test "update_department/2 with valid data updates the department" do
       company = product_company_fixture()
       department = department_fixture(%{company_id: company.id})
-      update_attrs = %{name: "some updated name", budget: 43}
+      update_attrs = %{name: "some updated name", budget: 110_000}
 
       assert {:ok, %Department{} = department} =
                Deparments.update_department(department, update_attrs)
 
       assert department.name == "some updated name"
-      assert department.budget == 43
+      assert department.budget == 110_000
     end
 
     test "update_department/2 with invalid data returns error changeset" do

@@ -24,11 +24,11 @@ defmodule AssociationElixirWeb.Api.SuperAdmin.DepartmentControllerTest do
 
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, ~p"/api/departments/#{id}")
+      conn = get(conn, Routes.api_department_path(conn, :show, id))
 
       assert %{
                "id" => ^id,
-               "budget" => 10_000,
+               "budget" => 100_000,
                "name" => "Human Resource"
              } = json_response(conn, 200)["data"]
     end
@@ -66,7 +66,7 @@ defmodule AssociationElixirWeb.Api.SuperAdmin.DepartmentControllerTest do
 
       assert %{
                "id" => ^id,
-               "budget" => 10_000,
+               "budget" => 100_000,
                "name" => "FINANCE"
              } = json_response(conn, 200)["data"]
     end

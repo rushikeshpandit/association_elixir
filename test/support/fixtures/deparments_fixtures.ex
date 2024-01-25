@@ -6,7 +6,7 @@ defmodule AssociationElixir.DeparmentsFixtures do
 
   def department_attrs(attrs \\ %{}) do
     valid_attrs = %{
-      budget: 10_000,
+      budget: 100_000,
       name: "Human Resource"
     }
 
@@ -20,7 +20,7 @@ defmodule AssociationElixir.DeparmentsFixtures do
     {:ok, department} =
       attrs
       |> Enum.into(%{
-        budget: 10_000,
+        budget: 100_000,
         name: "Human Resource"
       })
       |> AssociationElixir.Deparments.create_department()

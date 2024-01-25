@@ -18,6 +18,7 @@ defmodule AssociationElixir.Deparments.Department do
     department
     |> cast(attrs, [:name, :budget, :company_id])
     |> validate_required([:name, :budget, :company_id])
+    |> validate_number(:budget, greater_than: 10_000)
     |> validate_length(:name,
       min: 6,
       max: 100,
