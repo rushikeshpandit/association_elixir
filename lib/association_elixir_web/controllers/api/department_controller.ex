@@ -14,4 +14,9 @@ defmodule AssociationElixirWeb.Api.DepartmentController do
     department = Deparments.get_department!(id)
     render(conn, :show, department: department)
   end
+
+  def list_departments(conn, %{"id" => id}) do
+    departments = Deparments.list_departments_by(id)
+    render(conn, :index, departments: departments)
+  end
 end
