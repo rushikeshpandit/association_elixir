@@ -50,6 +50,9 @@ defmodule AssociationElixirWeb.Router do
       get "/companies", CompaniesController, :index
       get "/companies/:id", CompaniesController, :show
 
+      # Authenticated user can getl ist of departments that are attached to specific company
+      get "/companies/department/:id", DepartmentController, :list_departments
+
       # Authenticated user can only see the departments
       get "/departments", DepartmentController, :index
       get "/departments/:id", DepartmentController, :show
