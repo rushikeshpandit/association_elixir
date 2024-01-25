@@ -107,7 +107,7 @@ defmodule AssociationElixir.Deparments do
 
   ## Examples
 
-      iex> list_departments(company_id)
+      iex> list_departments_by(company_id)
       [%Department{}, ...]
 
   """
