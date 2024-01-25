@@ -25,6 +25,11 @@ defmodule AssociationElixirWeb.Router do
 
     scope "/admin", Admin, as: :admin do
       pipe_through :is_admin
+
+      # Only  admin can create, update and delete location
+      post "/locations", LocationController, :create
+      put "/locations/:id", LocationController, :update
+      delete "/locations/:id", LocationController, :delete
     end
 
     scope "/super_admin", SuperAdmin, as: :super_admin do
@@ -50,12 +55,19 @@ defmodule AssociationElixirWeb.Router do
       get "/companies", CompaniesController, :index
       get "/companies/:id", CompaniesController, :show
 
-      # Authenticated user can getl ist of departments that are attached to specific company
+      # Authenticated user can get list of departments that are attached to specific company
       get "/companies/department/:id", DepartmentController, :list_departments
 
       # Authenticated user can only see the departments
       get "/departments", DepartmentController, :index
       get "/departments/:id", DepartmentController, :show
+
+      # Authenticated user can get list of locations that are attached to specific company
+      get "/companies/locations/:id", LocationController, :list_locations
+
+      # Authenticated user can only see the locations
+      get "/locations", LocationController, :index
+      get "/locations/:id", LocationController, :show
     end
 
     post "/users", UserController, :create
