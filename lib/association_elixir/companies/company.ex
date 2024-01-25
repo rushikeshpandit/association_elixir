@@ -1,6 +1,6 @@
 defmodule AssociationElixir.Companies.Company do
-  alias AssociationElixir.Locations.Location
   alias AssociationElixir.Deparments.Department
+  alias AssociationElixir.Locations.Location
   use Ecto.Schema
   import Ecto.Changeset
 
