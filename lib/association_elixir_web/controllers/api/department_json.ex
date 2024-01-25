@@ -1,6 +1,5 @@
 defmodule AssociationElixirWeb.Api.DepartmentJSON do
   alias AssociationElixir.Deparments.Department
-  alias AssociationElixirWeb.Api.CompaniesJSON
 
   @doc """
   Renders a list of departments.
@@ -20,16 +19,7 @@ defmodule AssociationElixirWeb.Api.DepartmentJSON do
     %{
       id: department.id,
       name: department.name,
-      budget: department.budget,
-      company: load_company(department.company, department.company_id)
+      budget: department.budget
     }
-  end
-
-  defp load_company(company, company_id) do
-    if Ecto.assoc_loaded?(company) do
-      CompaniesJSON.show(%{company: company})
-    else
-      %{id: company_id}
-    end
   end
 end
