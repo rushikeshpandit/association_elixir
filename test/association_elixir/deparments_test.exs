@@ -73,5 +73,11 @@ defmodule AssociationElixir.DeparmentsTest do
       department = department_fixture(%{company_id: company.id})
       assert %Ecto.Changeset{} = Deparments.change_department(department)
     end
+
+    test "list_departments_by/1 returns all departments that belongs to company" do
+      company = product_company_fixture()
+      department = department_fixture(%{company_id: company.id})
+      assert Deparments.list_departments_by(company.id) == [department]
+    end
   end
 end

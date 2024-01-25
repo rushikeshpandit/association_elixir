@@ -101,4 +101,19 @@ defmodule AssociationElixir.Deparments do
   def change_department(%Department{} = department, attrs \\ %{}) do
     Department.changeset(department, attrs)
   end
+
+  @doc """
+  Returns the list of departments by company id.
+
+  ## Examples
+
+      iex> list_departments(company_id)
+      [%Department{}, ...]
+
+  """
+  def list_departments_by(company_id) do
+    Department
+    |> where([d], d.company_id == ^company_id)
+    |> Repo.all()
+  end
 end
