@@ -7,7 +7,7 @@ defmodule AssociationElixirWeb.Middleware.IsAdmin do
   def call(conn, _opts) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
          {:ok, user} = Tokenr.verify_auth_token(token),
-         true <- user.role == :ADMIN do
+         true <- Enum.member?([:ADMIN, :SUPER_ADMIN], user.role) do
       put_req_header(conn, "user_id", user.id)
     else
       _ ->
