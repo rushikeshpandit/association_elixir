@@ -68,6 +68,10 @@ defmodule AssociationElixirWeb.Router do
       # Authenticated user can only see the locations
       get "/locations", LocationController, :index
       get "/locations/:id", LocationController, :show
+
+      # Authenticated user can perform all CRUD operations related to employee
+      resources "/employees", EmployeeController
+      get "/companies/employees/:id", EmployeeController, :list_employees
     end
 
     post "/users", UserController, :create
