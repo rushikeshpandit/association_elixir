@@ -1,4 +1,5 @@
 defmodule AssociationElixir.Locations.Location do
+  alias AssociationElixir.Employees.Employee
   alias AssociationElixir.Companies.Company
   use Ecto.Schema
   import Ecto.Changeset
@@ -11,7 +12,9 @@ defmodule AssociationElixir.Locations.Location do
     field :city, :string
     field :country, :string
     field :pincode, :integer
+
     belongs_to :company, Company
+    has_one :employee, Employee
 
     timestamps(type: :utc_datetime)
   end

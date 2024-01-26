@@ -19,6 +19,7 @@ defmodule AssociationElixir.Companies.Company do
     has_many :departments, Department
     has_many :locations, Location
     has_many :employees, Employee
+
     timestamps(type: :utc_datetime)
   end
 
