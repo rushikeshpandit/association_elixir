@@ -107,7 +107,7 @@ defmodule AssociationElixir.Locations do
 
   ## Examples
 
-      iex> list_locationss_by(company_id)
+      iex> list_locations_by(company_id)
       [%Location{}, ...]
 
   """
