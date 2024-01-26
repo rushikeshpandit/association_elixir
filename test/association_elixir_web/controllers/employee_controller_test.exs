@@ -1,9 +1,10 @@
 defmodule AssociationElixirWeb.EmployeeControllerTest do
   use AssociationElixirWeb.ConnCase
   import AssociationElixir.CompaniesFixtures
+  import AssociationElixir.DeparmentsFixtures
   import AssociationElixir.EmployeesFixtures
-
   alias AssociationElixir.Employees.Employee
+  import AssociationElixir.LocationsFixtures
 
   @create_attrs %{
     first_name: "John",
@@ -29,10 +30,16 @@ defmodule AssociationElixirWeb.EmployeeControllerTest do
 
     test "renders employee when data is valid", %{conn: conn} do
       company = product_company_fixture()
+      department = department_fixture(%{company_id: company.id})
+      location = location_fixture(%{company_id: company.id})
 
       conn =
         post(conn, ~p"/api/employees",
-          employee: @create_attrs |> Map.put(:company_id, company.id)
+          employee:
+            @create_attrs
+            |> Map.put(:company_id, company.id)
+            |> Map.put(:location_id, location.id)
+            |> Map.put(:department_id, department.id)
         )
 
       assert %{"id" => id} = json_response(conn, 201)["data"]
@@ -92,7 +99,16 @@ defmodule AssociationElixirWeb.EmployeeControllerTest do
 
   defp create_employee(_) do
     company = product_company_fixture()
-    employee = employee_fixture(%{company_id: company.id})
+    department = department_fixture(%{company_id: company.id})
+    location = location_fixture(%{company_id: company.id})
+
+    employee =
+      employee_fixture(%{
+        company_id: company.id,
+        department_id: department.id,
+        location_id: location.id
+      })
+
     %{employee: employee}
   end
 end

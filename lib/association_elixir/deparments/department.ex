@@ -1,4 +1,5 @@
 defmodule AssociationElixir.Deparments.Department do
+  alias AssociationElixir.Employees.Employee
   alias AssociationElixir.Companies.Company
   use Ecto.Schema
   import Ecto.Changeset
@@ -8,7 +9,9 @@ defmodule AssociationElixir.Deparments.Department do
   schema "departments" do
     field :name, :string
     field :budget, :integer
+
     belongs_to :company, Company
+    has_one :employee, Employee
 
     timestamps(type: :utc_datetime)
   end
