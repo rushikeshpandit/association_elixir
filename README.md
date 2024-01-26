@@ -1,18 +1,34 @@
 # AssociationElixir
 
-To start your Phoenix server:
+User can sign up with 3 roles : user, admin, super admin
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- one company has many departments
+- one company has many locations
+- one company has many employees
+- one employee belongs to one department
+- one employee belongs to one location
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Following is role based access control
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+<b>Super Admin</b>
 
-## Learn more
+- Can Create, Read, Update, Delete following schemas
+  - Company
+  - Department
+  - Location
+  - Employee
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+<b>Admin</b>
+
+- Can Create, Read, Update, Delete Following Schema
+  - Location
+  - Employee
+
+<b>User (Authenticated user)</b>
+
+- Can Create, Read, Update, Delete Following Schema
+  - Employee
+- Can ONLY Read following schema
+  - Company
+  - Department
+  - Location
